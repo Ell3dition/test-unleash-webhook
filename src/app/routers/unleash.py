@@ -18,7 +18,7 @@ router = APIRouter(
 
 @router.post("/webhook")
 async def handle_webhook(request: Request):
-
+    print(await request.json())
     try:
         request_json = await request.json()
         payload = WebhookSchema(**request_json)
@@ -55,6 +55,7 @@ async def handle_webhook(request: Request):
         return {"status": "success", "message": "Webhook procesado correctamente"}
 
     except Exception as e:
+        print(e)
         raise HTTPException(
             status_code=500, detail=f"Error procesando el webhook: {str(e)}"
         )
