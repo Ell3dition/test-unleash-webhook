@@ -18,10 +18,10 @@ router = APIRouter(
 
 @router.post("/webhook")
 async def handle_webhook(payload: WebhookSchema):
-
+    print("PAYLOAD ", payload)
+    print("BODY ", payload.body)
     try:
-        print("PAYLOAD ", payload)
-        print("BODY ", payload.body)
+
         feature = json.loads(payload.body)
         feature_event = FeatureEvent(**feature)
         print("feature_event ", feature_event)
