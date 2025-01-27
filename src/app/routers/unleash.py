@@ -21,10 +21,8 @@ async def handle_webhook(request: Request):
     print(await request.json())
     try:
         request_json = await request.json()
-        payload = WebhookSchema(**request_json)
-        feature = json.loads(payload.body)
-        print(feature)
-        feature_event = FeatureEvent(**feature)
+
+        feature_event = FeatureEvent(**request_json)
 
         client = get_client_by_name(feature_event.client)
 
@@ -37,8 +35,8 @@ async def handle_webhook(request: Request):
                         "code": feature_event.name,
                         "description": feature_event.description,
                         "feature_key": feature_event.feature_name,
-                        "path": feature.event.path,
-                        "icon": feature.event.icon,
+                        "path": feature_event.path,
+                        "icon": feature_event.icon,
                         "feature_id": feature_event.feature_id,
                         "status": False,
                     }
