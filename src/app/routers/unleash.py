@@ -1,5 +1,5 @@
 import json
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 from app.schemas.unleash import WebhookSchema, FeatureEvent
 from app.core.constants import (
     FEATURE_CREATED,
@@ -17,14 +17,15 @@ router = APIRouter(
 
 
 @router.post("/webhook")
-async def handle_webhook(payload: WebhookSchema):
-    print("PAYLOAD ", payload)
-    print("BODY ", payload.body)
-    try:
+async def handle_webhook(request: Request):
 
+    try:
+        request_json = await request.json()
+        payload = WebhookSchema(**request_json)
         feature = json.loads(payload.body)
+        print(feature)
         feature_event = FeatureEvent(**feature)
-        print("feature_event ", feature_event)
+
         client = get_client_by_name(feature_event.client)
 
         if feature_event.event_type == FEATURE_CREATED:
