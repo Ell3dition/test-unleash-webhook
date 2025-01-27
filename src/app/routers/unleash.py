@@ -18,7 +18,6 @@ router = APIRouter(
 
 @router.post("/webhook")
 async def handle_webhook(request: Request):
-    print(await request.json())
     try:
         request_json = await request.json()
 
