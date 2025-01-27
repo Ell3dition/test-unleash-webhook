@@ -1,0 +1,13 @@
+**__pycache__
+**.idea
+**.pytest_cache
+**.vscode/
+**logs/
+**venv/
+**htmlcov
+**.coverage
+.env
+data
+.dccache
+.devcontainer
+Dockerfile.*

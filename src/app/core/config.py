@@ -1,0 +1,10 @@
+from os import getenv
+
+POSTGRES_USER = getenv("POSTGRES_USER", "")
+POSTGRES_PASSWORD = getenv("POSTGRES_PASSWORD", "")
+POSTGRES_SERVER = getenv("POSTGRES_SERVER", "")
+POSTGRES_DATABASE = getenv("POSTGRES_DATABASE", "")
+SCHEMA_NAME = getenv("SCHEMA_NAME", "")
+
+UNLEASH_URL = getenv("UNLEASH_URL", "")
+UNLEASH_TOKEN = getenv("UNLEASH_TOKEN", "")

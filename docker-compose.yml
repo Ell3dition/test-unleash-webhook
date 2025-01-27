@@ -1,0 +1,9 @@
+services:
+  wh-features:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./src:/src
+    env_file:
+      - .env
